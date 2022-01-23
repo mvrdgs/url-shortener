@@ -3,7 +3,7 @@ package com.zg.shortener.model.entities;
 import javax.persistence.*;
 
 @Entity
-public class shortUrl {
+public class ShortUrl {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -15,6 +15,13 @@ public class shortUrl {
     private String shortUrl;
 
     private int clicks;
+
+    public ShortUrl(String url, String shortUrl) {
+        this.id = id;
+        this.url = url;
+        this.shortUrl = shortUrl;
+        this.clicks = 0;
+    }
 
     public int getId() {
         return id;

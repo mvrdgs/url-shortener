@@ -1,8 +1,8 @@
 package com.zg.shortener.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.zg.shortener.model.entities.ShortUrl;
+import com.zg.shortener.model.entities.Url;
+import org.springframework.web.bind.annotation.*;
 
 import static com.zg.shortener.utils.generateRandomUrl.generateRandomUrl;
 
@@ -15,8 +15,14 @@ public class urlController {
     }
 
     @PostMapping
-    public StringBuilder shortUrl() {
-        StringBuilder randomUrl = generateRandomUrl();
-        return randomUrl;
+    @ResponseBody
+    public ShortUrl create(@RequestBody Url url) {
+        String randomUrl = generateRandomUrl();
+
+        System.out.println(url.getUrl());
+
+        ShortUrl newUrl = new ShortUrl(url.getUrl(), randomUrl);
+
+        return newUrl;
     }
 }

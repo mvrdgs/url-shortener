@@ -1,7 +1,7 @@
 package com.zg.shortener.utils;
 
 public class generateRandomUrl {
-    public static StringBuilder generateRandomUrl() {
+    public static String generateRandomUrl() {
         StringBuilder url = new StringBuilder();
         String possibleCharacters = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -9,6 +9,6 @@ public class generateRandomUrl {
             url.append(possibleCharacters.charAt((int) Math.floor(Math.random() * possibleCharacters.length())));
         }
 
-        return url;
+        return String.valueOf(url);
     }
 }
