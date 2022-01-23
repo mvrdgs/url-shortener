@@ -1,16 +1,20 @@
 package com.zg.shortener.model.entities;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 @Entity
 public class ShortUrl {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull
     private String url;
 
+    @NotNull
     @Column(unique = true)
     private String shortUrl;
 
