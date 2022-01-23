@@ -18,6 +18,7 @@ public class urlController {
 
     @GetMapping(path="/{url}")
     public Optional<ShortUrl> getUrl(@PathVariable String url) {
+
         return urlRepository.findByShortUrl(url);
     }
 
@@ -25,6 +26,20 @@ public class urlController {
     @ResponseBody
     public ShortUrl create(@RequestBody Url url) {
         String randomUrl = generateRandomUrl();
+
+        boolean urlExists = true;
+
+        while (urlExists) {
+            Optional<ShortUrl> urlFound = urlRepository.findByShortUrl(randomUrl);
+
+            System.out.println(urlFound);
+
+            if (urlFound.isPresent()) {
+                continue;
+            }
+
+            urlExists = false;
+        }
 
         ShortUrl newUrl = new ShortUrl(url.getUrl(), randomUrl);
         urlRepository.save(newUrl);
