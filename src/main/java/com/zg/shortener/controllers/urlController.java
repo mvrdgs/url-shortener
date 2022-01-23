@@ -19,7 +19,11 @@ public class urlController {
     @GetMapping(path="/{url}")
     public Optional<ShortUrl> getUrl(@PathVariable String url) {
 
-        return urlRepository.findByShortUrl(url);
+        Optional<ShortUrl> urlFound = urlRepository.findByShortUrl(url);
+        urlFound.get().increaseCount();
+        urlRepository.save(urlFound.get());
+
+        return urlFound;
     }
 
     @PostMapping
@@ -31,8 +35,6 @@ public class urlController {
 
         while (urlExists) {
             Optional<ShortUrl> urlFound = urlRepository.findByShortUrl(randomUrl);
-
-            System.out.println(urlFound);
 
             if (urlFound.isPresent()) {
                 continue;

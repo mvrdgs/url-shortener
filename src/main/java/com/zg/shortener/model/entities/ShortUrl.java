@@ -49,7 +49,7 @@ public class ShortUrl {
         return clicks;
     }
 
-    public void setClicks(int clicks) {
-        this.clicks = clicks;
+    public void increaseCount() {
+        this.clicks += 1;
     }
 }
