@@ -20,6 +20,8 @@ public class ShortUrl {
 
     private int clicks;
 
+    public ShortUrl(){}
+
     public ShortUrl(String url, String shortUrl) {
         this.id = id;
         this.url = url;

@@ -6,6 +6,8 @@ import com.zg.shortener.model.repositories.UrlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 import static com.zg.shortener.utils.generateRandomUrl.generateRandomUrl;
 
 @RestController
@@ -14,9 +16,9 @@ public class urlController {
     @Autowired
     private UrlRepository urlRepository;
 
-    @GetMapping
-    public String teste() {
-        return "teste";
+    @GetMapping(path="/{url}")
+    public Optional<ShortUrl> getUrl(@PathVariable String url) {
+        return urlRepository.findByShortUrl(url);
     }
 
     @PostMapping
