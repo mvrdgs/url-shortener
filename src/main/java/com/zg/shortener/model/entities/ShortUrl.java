@@ -1,8 +1,7 @@
 package com.zg.shortener.model.entities;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class ShortUrl {

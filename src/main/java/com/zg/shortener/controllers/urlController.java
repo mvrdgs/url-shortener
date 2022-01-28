@@ -6,11 +6,13 @@ import com.zg.shortener.model.repositories.UrlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 import static com.zg.shortener.utils.generateRandomUrl.generateRandomUrl;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class urlController {
 
     @Autowired
@@ -28,7 +30,7 @@ public class urlController {
 
     @PostMapping
     @ResponseBody
-    public ShortUrl create(@RequestBody Url url) {
+    public ShortUrl create(@RequestBody @Valid Url url) {
         String randomUrl = generateRandomUrl();
 
         boolean urlExists = true;
@@ -37,6 +39,7 @@ public class urlController {
             Optional<ShortUrl> urlFound = urlRepository.findByShortUrl(randomUrl);
 
             if (urlFound.isPresent()) {
+                randomUrl = generateRandomUrl();
                 continue;
             }
 
